@@ -1,5 +1,6 @@
 <?php
-$host = 'localhost';
+
+$host = "localhost";
 
 $dbname = "bookstore";
 
