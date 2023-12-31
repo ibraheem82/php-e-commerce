@@ -16,7 +16,13 @@
 
             if($login->rowCount() > 0){
                 if(password_verify($password, $fetch["mypassword"])){
-                    echo "login";
+                    
+                    $_SESSION['username'] =  $fetch['username'];
+                    $_SESSION['user_id'] =  $fetch['id'];
+
+
+                    // * Will go to the home page , after the user has been authenticated.
+                    header("location: ".APPURL."");
             } else{
                 echo "<script>alert('Incorrect password or email');</script>";
             }
