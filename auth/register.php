@@ -5,7 +5,7 @@
     if(isset($_POST["submit"])){
 
         if(empty($_POST["username"]) OR empty($_POST["email"]) OR empty($_POST["password"])) {
-            echo "<script>alert('Something is empty')</script>";
+            echo "<script>alert('Something is empty');</script>";
         } else{
             $username = $_POST["username"];
             $email = $_POST["email"];
@@ -15,12 +15,13 @@
 
 
             $insert->execute([
-                ":username"=> $username,
-                ":email"=> $email,
-                ":mypassword"=> $password,
+                ":username" => $username,
+                ":email" => $email,
+                ":mypassword" => password_hash($password, PASSWORD_DEFAULT) ,
             ]);
 
             header("location: login.php");
+            exit();
         }
 
     }
@@ -70,8 +71,8 @@
 
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form class="form-control mt-5">
-                    <h4 class="text-center mt-3" method="POST" action="register.php"> Register </h4>
+                <form class="form-control mt-5"  method="POST" action="register.php">
+                    <h4 class="text-center mt-3"> Register </h4>
                     <div class="">
                         <label for="" class="col-sm-2 col-form-label">Username</label>
                         <div class="">
