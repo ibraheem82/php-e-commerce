@@ -1,3 +1,13 @@
+<?php
+
+    session_start();
+
+
+    // can be use globally.
+    define("APPURL", "http://localhost/bookstore");
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
