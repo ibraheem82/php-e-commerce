@@ -1,9 +1,10 @@
 <?php require "../includes/header.php"; ?>
 <?php require "../config/config.php"; ?>
 
+
+
+
 <?php 
-
-
 // if you are logged in and you try to access the login page , you will be redircted back to home page because you already have a session, wish means that you a already to logged in onto the application....
 if(isset($_SESSION["username"])){
     header("location: ".APPURL."");
