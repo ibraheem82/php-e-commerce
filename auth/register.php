@@ -3,9 +3,9 @@
 
 <?php 
 
+// if you are logged in and you try to access the register page , you will be redircted back to home page because you already have a session
 if(isset($_SESSION["username"])){
     header("location: ".APPURL."");
-
 }
 
     if(isset($_POST["submit"])){
