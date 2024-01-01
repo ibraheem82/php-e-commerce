@@ -2,6 +2,13 @@
 <?php require "../config/config.php"; ?>
 
 <?php 
+
+
+// if you are logged in and you try to access the login page , you will be redircted back to home page because you already have a session, wish means that you a already to logged in onto the application....
+if(isset($_SESSION["username"])){
+    header("location: ".APPURL."");
+
+}
     if(isset($_POST["submit"])){
 
         if(empty($_POST["email"]) OR empty($_POST["password"])) {
@@ -16,7 +23,7 @@
 
             if($login->rowCount() > 0){
                 if(password_verify($password, $fetch["mypassword"])){
-                    
+
                     $_SESSION['username'] =  $fetch['username'];
                     $_SESSION['user_id'] =  $fetch['id'];
 
