@@ -45,7 +45,20 @@ if(isset($_GET["id"])){
                                 </div>
                                 <p class="about"><?php echo $product->description; ?></p>
                               
-                                <div class="cart mt-4 align-items-center"> <button class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button> </div>
+                                    <div class="">
+                                    <input type="text" name="pro_amount" value="1"  class="form-control" >
+                                    </div>
+
+                                    <div class="">
+                                    <input type="text" name="pro_file" value="<?php echo $product->file; ?>"  class="form-control" >
+                                    </div>
+
+                                    <div class="">
+                                    <input type="text" name="user_id" class="form-control" value="<?php echo $_SESSION['user_id']; ?>" >
+                                    </div>
+                                
+                                <div class="cart mt-4 align-items-center"> <button type="submit" name="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button> </div>
+                                </form>
                             </div>
                         </div>
                     </div>
