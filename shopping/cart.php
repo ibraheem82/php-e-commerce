@@ -53,11 +53,11 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                         <td class="pro_price"> <?php echo $product->pro_price; ?></td>
                         <td><input id="form1" min="1" name="quantity" value="<?php echo $product->pro_amount; ?>" type="number"
                         class="form-control form-control-sm pro_amount" /></td>
-                        <td class="total_price"></td>
+                        <td class="total_price"><?php echo $product->pro_price * $product->pro_amount; ?></td>
 
 
                         <td>
-                          <button class="btn btn-warning text-white">
+                          <button class="btn-update btn btn-warning text-white">
                           <i class="fas fa-pen"></i> 
                         </button>
                       </td>
@@ -119,26 +119,26 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
                   $el.find(".total_price").append(total+'$');
 
-                  // $(".btn-update").on('click', function(e) {
+                  $(".btn-update").on('click', function(e) {
 
-                  //     var id = $(this).val();
+                      var id = $(this).val();
                     
 
-                  //     $.ajax({
-                  //       type: "POST",
-                  //       url: "update-item.php",
-                  //       data: {
-                  //         update: "update",
-                  //         id: id,
-                  //         product_amount: pro_amount
-                  //       },
+                      $.ajax({
+                        type: "POST",
+                        url: "update-item.php",
+                        data: {
+                          update: "update",
+                          id: id,
+                          product_amount: pro_amount
+                        },
 
-                  //       success: function() {
-                  //        // alert("done");
-                  //         reload();
-                  //       }
-                  //     })
-                  //   });
+                        success: function() {
+                         // alert("done");
+                          reload();
+                        }
+                      })
+                    });
                  
                 
            fetch();     
