@@ -44,6 +44,22 @@ if(isset($_GET["id"])){
                                     </div>
                                 </div>
                                 <p class="about"><?php echo $product->description; ?></p>
+                              <form id="form-data" method="post">
+                                    <div class="">
+                                    <input type="text" name="pro_id" value="<?php echo $product->description; ?>" class="form-control" >
+                                    </div>
+
+                                    <div class="">
+                                    <input type="text" value="<?php echo $product->name; ?>"  name="pro_name" class="form-control" >
+                                    </div>
+
+                                    <div class="">
+                                    <input type="text" name="pro_image" value="<?php echo $product->image; ?>" class="form-control" >
+                                    </div>
+
+                                    <div class="">
+                                    <input type="text" name="pro_price" value="<?php echo $product->price; ?>"  class="form-control" >
+                                    </div>
                               
                                     <div class="">
                                     <input type="text" name="pro_amount" value="1"  class="form-control" >
