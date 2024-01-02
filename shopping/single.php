@@ -67,3 +67,14 @@ if(isset($_GET["id"])){
         </div>
 
 <?php require "../includes/footer.php"; ?>
+
+
+<script>
+    $(document).ready(function(){
+        $(document).on("submit", function(e){
+            // grabing the data
+            var $formdata = $("#form-data").serialize()+'&submit=submit';
+
+        })
+});
+</script>
