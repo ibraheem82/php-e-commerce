@@ -57,7 +57,7 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
 
                         <td>
-                          <button class="btn-update btn btn-warning text-white">
+                          <button value="<?php echo $product->id; ?>" class="btn-update btn btn-warning text-white">
                           <i class="fas fa-pen"></i> 
                         </button>
                       </td>
@@ -130,12 +130,12 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                         data: {
                           update: "update",
                           id: id,
-                          product_amount: pro_amount
+                          pro_amount: pro_amount
                         },
 
                         success: function() {
                          // alert("done");
-                          reload();
+                          // reload();
                         }
                       })
                     });
@@ -158,11 +158,11 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
         }, 4000);
       } 
       
-      // function reload() {
+      function reload() {
 
        
-      //       $("body").load("cart.php")
+            $("body").load("cart.php")
        
-      // }
+      }
 });
 </script>
