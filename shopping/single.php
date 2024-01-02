@@ -130,6 +130,8 @@ if(isset($_GET["id"])){
 
                 success: function(){
                     alert("Added to cart")
+
+                    $("button[name='submit']").html("<i class='fas fa-shopping-cart'></i> Added to cart").prop("disabled", true);
                 }
             })
         })
