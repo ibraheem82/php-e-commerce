@@ -50,10 +50,10 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                         class="img-fluid rounded-3" alt="Cotton T-shirt">
                         </td>
                         <td><?php echo $product->pro_name; ?></td>
-                        <td>$<?php echo $product->pro_price; ?></td>
+                        <td class="pro_price"> <?php echo $product->pro_price; ?></td>
                         <td><input id="form1" min="1" name="quantity" value="<?php echo $product->pro_amount; ?>" type="number"
-                        class="form-control form-control-sm" /></td>
-                        <td>$<?php echo $product->pro_price; ?></td>
+                        class="form-control form-control-sm pro_amount" /></td>
+                        <td class="total_price"></td>
 
 
                         <td>
@@ -82,7 +82,7 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
                   <div class="d-flex justify-content-between mb-5">
                     <h5 class="text-uppercase">Total price</h5>
-                    <h5>€ 137.00</h5>
+                    <h5 class="full_price"></h5>
                   </div>
 
                   <button type="button" class="btn btn-dark btn-block btn-lg"
@@ -141,22 +141,22 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                   //   });
                  
                 
-          //  fetch();     
+           fetch();     
       });
 
-      // fetch();
+      fetch();
 
-      // function fetch() {
+      function fetch() {
 
-      //   setInterval(function () {
-      //             var sum = 0.0;
-      //             $('.total_price').each(function()
-      //             {
-      //                 sum += parseFloat($(this).text());
-      //             });
-      //             $(".full_price").html(sum+"$");
-      //   }, 4000);
-      // } 
+        setInterval(function () {
+                  var sum = 0.0;
+                  $('.total_price').each(function()
+                  {
+                      sum += parseFloat($(this).text());
+                  });
+                  $(".full_price").html(sum+"$");
+        }, 4000);
+      } 
       
       // function reload() {
 
