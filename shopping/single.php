@@ -2,6 +2,31 @@
 <?php require "../config/config.php"; ?>
 
 <?php
+        if(isset($_POST["submit"])){
+            $pro_id = $_POST["pro_id"];
+            $pro_name = $_POST["pro_name"];
+            $pro_image = $_POST["pro_image"];
+            $pro_price = $_POST["pro_price"];
+            $pro_amount = $_POST["pro_amount"];
+            $pro_file = $_POST["pro_file"];
+            $user_id = $_POST["user_id"];
+
+            $insert = $conn->prepare("INSERT INTO cart (pro_id, pro_name, pro_image, pro_price, pro_amount, pro_file, user_id) VALUE(:pro_id, :pro_name, :pro_image, :pro_price, :pro_amount, :pro_file, :user_id)");
+
+            $insert->execute([
+                ':pro_id'  => $pro_id,
+                ':pro_name'  => $pro_name,
+                ':pro_image'  => $pro_image,
+                ':pro_price'  => $pro_price,
+                ':pro_amount'  => $pro_amount,
+                ':pro_file'  => $pro_file,
+                ':user_id'  => $user_id,
+            ]);
+
+
+        }
+
+
 if(isset($_GET["id"])){
 
     // * checking the id, that is coming from the shop page. id in href loop of id in the database
@@ -46,7 +71,7 @@ if(isset($_GET["id"])){
                                 <p class="about"><?php echo $product->description; ?></p>
                               <form id="form-data" method="post">
                                     <div class="">
-                                    <input type="text" name="pro_id" value="<?php echo $product->description; ?>" class="form-control" >
+                                    <input type="text" name="pro_id" value="<?php echo $product->id; ?>" class="form-control" >
                                     </div>
 
                                     <div class="">
@@ -60,7 +85,7 @@ if(isset($_GET["id"])){
                                     <div class="">
                                     <input type="text" name="pro_price" value="<?php echo $product->price; ?>"  class="form-control" >
                                     </div>
-                              
+
                                     <div class="">
                                     <input type="text" name="pro_amount" value="1"  class="form-control" >
                                     </div>
@@ -88,9 +113,22 @@ if(isset($_GET["id"])){
 <script>
     $(document).ready(function(){
         $(document).on("submit", function(e){
-            // grabing the data
-            var $formdata = $("#form-data").serialize()+'&submit=submit';
 
+            e.preventDefault();
+
+            // grabing the data
+            var formdata = $("#form-data").serialize()+'&submit=submit';
+
+
+            $.ajax({
+                type: "post",
+                url: "single.php?id=<?php echo $id; ?>",
+                data: formdata,
+
+                success: function(){
+                    alert("Added to cart")
+                }
+            })
         })
 });
 </script>
