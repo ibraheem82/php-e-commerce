@@ -117,12 +117,15 @@ if(isset($_GET["id"])){
             e.preventDefault();
 
             // grabing the data
+            // collects the data from the form with the ID "form-data" and serializes it into a string format suitable for sending to the
             var formdata = $("#form-data").serialize()+'&submit=submit';
 
 
             $.ajax({
                 type: "post",
+                // Sets the URL to send the request to. The URL includes a PHP variable $id which presumably holds some dynamic value.
                 url: "single.php?id=<?php echo $id; ?>",
+                // Attaches the serialized form data to the request
                 data: formdata,
 
                 success: function(){
