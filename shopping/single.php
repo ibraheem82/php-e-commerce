@@ -29,12 +29,22 @@
 
 if(isset($_GET["id"])){
 
+
+
     // * checking the id, that is coming from the shop page. id in href loop of id in the database
     $id = $_GET['id'];
-    $rows = $conn->query("SELECT * FROM products WHERE status = 1 AND id='$id' ");
-    $rows->execute();
 
-    $product = $rows->fetch(PDO::FETCH_OBJ);
+
+    // checking for product in cart.
+    $select = $conn->query("SELECT * FROM cart WHERE pro_id = '$id' AND user_id='$_SESSION[user_id]' ");
+    $select->execute();
+
+
+    // getting data for every product.
+    $row = $conn->query("SELECT * FROM products WHERE status = 1 AND id='$id' ");
+    $row->execute();
+
+    $product = $row->fetch(PDO::FETCH_OBJ);
 
 } else{
     echo'404';
@@ -98,7 +108,20 @@ if(isset($_GET["id"])){
                                     <input type="text" name="user_id" class="form-control" value="<?php echo $_SESSION['user_id']; ?>" >
                                     </div>
                                 
-                                <div class="cart mt-4 align-items-center"> <button type="submit" name="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button> </div>
+                                <div class="cart mt-4 align-items-center">
+
+                                    <?php if($select->rowCount() > 0) : ?>
+                                        <button id="submit" type="submit" name="submit" disabled class="btn btn-primary text-uppercase mr-2 px-4">
+                                            <i class="fas fa-shopping-cart">
+
+                                            </i> Added to cart
+                                        </button>
+
+                                        <?php else: ?>
+                                    <button id="submit" type="submit" name="submit" class="btn btn-primary text-uppercase mr-2 px-4"><i class="fas fa-shopping-cart"></i> Add to cart</button>
+                                    
+                                    <?php endif; ?>
+                                </div>
                                 </form>
                             </div>
                         </div>
