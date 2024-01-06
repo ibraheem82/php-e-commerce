@@ -63,8 +63,8 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                       </td>
 
 
-                        <td><button class="btn btn-danger text-white">
-                        <td><button class="btn btn-danger text-white btn-delete">
+                        <td>
+                            <button value="<?php echo $product->id; ?>" class="btn btn-danger text-white btn-delete">
                           <i class="fas fa-trash-alt"></i> 
                         </button></td>
                       </tr>
@@ -156,16 +156,15 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
                       $.ajax({
                         type: "POST",
-                        url: "update-item.php",
+                        url: "delete-item.php",
                         data: {
-                          update: "update",
-                          id: id,
-                          pro_amount: pro_amount
+                          delete: "delete",
+                          id: id
                         },
 
                         success: function() {
-                         // alert("done");
-                          // reload();
+                          alert("Product was deleted");
+                           reload();
                         }
                       })
                     });
