@@ -40,7 +40,9 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                       </tr>
                     </thead>
                     <tbody>
-                
+
+
+                        <?php if(count($allProducts) > 0) : ?>
                       <?php foreach ($allProducts as $product): ?>
                         
                       <tr class="mb-4">
@@ -69,6 +71,11 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                         </button></td>
                       </tr>
                       <?php endforeach; ?>
+                        <?php else : ?>
+                        <div class="alert alert-danger bg-danger text-white">
+                            There is no products in cart.
+                        </div>
+                        <?php endif; ?>
                     </tbody>
                   </table>
                   <a href="<?php echo APPURL; ?>" class="btn btn-success text-white"><i class="fas fa-arrow-left"></i>  Continue Shopping</a>
