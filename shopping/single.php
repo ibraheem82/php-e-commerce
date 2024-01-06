@@ -161,8 +161,17 @@ if(isset($_GET["id"])){
                     alert("Added to cart")
 
                     $("button[name='submit']").html("<i class='fas fa-shopping-cart'></i> Added to cart").prop("disabled", true);
+                    ref();
                 }
-            })
+            });
+
+            // will refresh
+                  function ref() {
+
+
+            $("body").load("single.php?id=<?php echo $id; ?>");
+
+      }
         })
 });
 </script>
