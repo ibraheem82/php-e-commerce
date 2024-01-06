@@ -64,6 +64,7 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
 
                         <td><button class="btn btn-danger text-white">
+                        <td><button class="btn btn-danger text-white btn-delete">
                           <i class="fas fa-trash-alt"></i> 
                         </button></td>
                       </tr>
@@ -139,10 +140,36 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                         }
                       })
                     });
+
+
+
                  
                 
            fetch();     
       });
+
+
+          $(".btn-delete").on('click', function(e) {
+
+                      var id = $(this).val();
+
+
+                      $.ajax({
+                        type: "POST",
+                        url: "update-item.php",
+                        data: {
+                          update: "update",
+                          id: id,
+                          pro_amount: pro_amount
+                        },
+
+                        success: function() {
+                         // alert("done");
+                          // reload();
+                        }
+                      })
+                    });
+
 
       fetch();
 
