@@ -7,10 +7,14 @@
     define("APPURL", "http://localhost/bookstore");
 
     require dirname(dirname(__FILE__)) . "/config/config.php";
-    $number = $conn->query("SELECT COUNT(*) as num_products FROM cart WHERE user_id='$_SESSION[user_id]'");
-    $number->execute();
 
-    $getNumber = $number->fetch(PDO::FETCH_OBJ);
+    if(isset($_SESSION['user_id'])) {
+            $number = $conn->query("SELECT COUNT(*) as num_products FROM cart WHERE user_id='$_SESSION[user_id]'");
+            $number->execute();
+
+            $getNumber = $number->fetch(PDO::FETCH_OBJ);
+    }
+
 
 ?>
 
