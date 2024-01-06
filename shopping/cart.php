@@ -36,7 +36,7 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
                         
                         <th scope="col">Total Price</th>
                         <th scope="col">Update</th>
-                        <th scope="col"><a href="#" class="btn btn-danger text-white">Clear</a></th>
+                        <th scope="col"><button class="delete-all btn btn-danger text-white">Clear</button></th>
                       </tr>
                     </thead>
                     <tbody>
@@ -164,6 +164,28 @@ $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
                         success: function() {
                           alert("Product was deleted");
+                           reload();
+                        }
+                      })
+                    });
+
+
+
+
+        // Clear all products from cart
+         $(".delete-all").on('click', function(e) {
+
+
+
+                      $.ajax({
+                        type: "POST",
+                        url: "delete-all-item.php",
+                        data: {
+                          delete: "delete"
+                        },
+
+                        success: function() {
+                          alert("All Products was deleted succefully");
                            reload();
                         }
                       })
