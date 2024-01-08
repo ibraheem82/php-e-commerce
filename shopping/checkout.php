@@ -84,7 +84,7 @@
      data-name="Custom t-shirt"
     data-description="Your custom designed t-shirt"
     data-currency="usd"
-    data-label="Pay No"
+    data-label="Pay NoW"
   </script>
 
             </form>

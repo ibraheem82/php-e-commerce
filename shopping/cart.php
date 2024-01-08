@@ -2,9 +2,14 @@
 <?php require "../config/config.php"; ?>
 
 <?php 
+//query selects all rows where the user_id column is equal to the value of the $_SESSION['user_id'] variable
 $products = $conn->query("SELECT * FROM cart WHERE user_id = '$_SESSION[user_id]'");
 $products->execute();
 
+
+//fetch all rows from the result set as objects.
+
+// iterates over the $allProducts array and prints the value of the product_id column for each product.
 $allProducts = $products->fetchAll(PDO::FETCH_OBJ);
 
 
@@ -56,7 +61,11 @@ if(isset($_POST['submit'])) {
 
                                     <tr class="mb-4">
                                         <th scope="row"><?php echo $product->pro_id; ?></th>
-                                        <td><img width="100" height="100" src="../images/<?php $product->pro_image; ?>" class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                        <td>
+                                        <img width="100"
+                                         height="100"
+                                         src="../images/<?php echo $product->pro_image; ?>"
+                                         class="img-fluid rounded-3" alt="<?php echo $product->pro_name; ?>">
                                         </td>
                                         <td><?php echo $product->pro_name; ?></td>
                                         <td class="pro_price"> <?php echo $product->pro_price; ?></td>
