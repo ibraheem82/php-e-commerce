@@ -12,6 +12,8 @@ if(isset($_POST['submit'])) {
     $price = $_POST['price'];
 
     $_SESSION['price'] = $price;
+
+    header("location: checkout.php");
 }
 
 
