@@ -1,17 +1,8 @@
 <?php require "../includes/header.php"; ?>
 <?php require "../config/config.php"; ?>
 
-<!--
-<?php
 
-
-
-
-
-?>
--->
       <!-- Heading -->
-      <?php echo $_SESSION['price']; ?>
       <h2 class="my-5 h2 text-center">Checkout</h2>
 
       <!--Grid row-->
