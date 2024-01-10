@@ -5,7 +5,12 @@
 <?php
 
 
-\Stripe\Stripe::setApiKey($secret_key);
+
+  
+
+if(isset($_POST["email"])){
+
+  \Stripe\Stripe::setApiKey($secret_key);
 
 $charge = \Stripe\Charge::create([
   'source' => $_POST['stripeToken'],
@@ -15,5 +20,32 @@ $charge = \Stripe\Charge::create([
 ]);
 
 echo "<h1>Paid</h1>";
+
+    if(empty($_POST["email"]) OR empty($_POST["username"]) OR empty($_POST["fname"]) OR empty($_POST["lname"])) {
+            echo "<script>alert('Something is empty');</script>";
+        } else{
+          $email = $_POST['email'];
+          $username = $_POST['username'];
+          $fname = $_POST['fname'];
+          $lname = $_POST['lname'];
+          $price =  $_SESSION['price'];
+          $token = $_POST['stripeToken'];
+          $user_id = $_SESSION['user_id'];
+
+            $insert = $conn->prepare("INSERT INTO orders (email, username, fname, lname, token, price, user_id) VALUES (:email, :username, :fname, :lname, :token, :price, :user_id)");
+            $insert->execute([
+              ':email'    => $email,
+              ':username' => $username,
+              ':fname'    => $fname,
+              ':lname'    => $lname,
+              ':token'    => $token,
+              ':price'    => $price,
+              'user_id'   => $user_id
+            ]);
+    }
+}
+
+
+
 
 ?>
